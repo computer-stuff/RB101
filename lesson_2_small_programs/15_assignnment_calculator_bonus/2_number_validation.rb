@@ -2,8 +2,16 @@ def prompt(message)
   puts("=> #{message}")
 end
 
+def number?(input)
+  integer?(input) || float?(input)
+end
+
 def integer?(input)
   input.to_i.to_s == input
+end
+
+def float?(input)
+  input.to_f.to_s == input
 end
 
 def operation_to_message(op)
@@ -42,6 +50,8 @@ loop do # main loop
 
     if integer?(number1)
       break
+    elsif float?(number1)
+      break
     else
       prompt("Hmm.. that doesn't look like a valid number")
     end
@@ -53,6 +63,8 @@ loop do # main loop
     number2 = gets.chomp
 
     if integer?(number2)
+      break
+    elsif float?(number2)
       break
     else
       prompt("Hmm.. that doesn't look like a valid number")
@@ -84,11 +96,11 @@ loop do # main loop
 
   result = case operator
            when '1'
-             number1.to_i + number2.to_i
+             number1.to_f + number2.to_f
            when '2'
-             number1.to_i - number2.to_i
+             number1.to_f - number2.to_f
            when '3'
-             number1.to_i * number2.to_i
+             number1.to_f * number2.to_f
            when '4'
              number1.to_f / number2.to_f
            end
